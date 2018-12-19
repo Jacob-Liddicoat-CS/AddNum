@@ -5,9 +5,45 @@ public class AddNum
    //Global Variables
    static int[] num = new int[2];
    static String[] input = new String[2];
+   static String[] parseReturn = new String[2];
 
    String parsingMethod (String[] string)
    {
+     String returnString = null;
+     int returnInt = null; //Input is small, thus int, not long
+     float returnFloat = null; //Input is small, thus float, not double
+     try
+     {
+       returnInt = Integer.parseInt(string[0]);
+       System.out.println("Please restart the program and type digits");
+     }
+     catch (NumberFormatException e)
+     {
+       try
+       {
+         System.out.println("Let's see if you typed a decimal.");
+         returnFloat = Float.parseFloat(input[0]);
+         System.out.println("Looks like you typed a decimal. \nPlease restart the program and type digits.");
+       }
+       catch (NumberFormatException e)
+       {
+         System.out.println("Let's see if you mistyped digit");
+         returnString = string[0];
+         System.out.println("Looks like you mistyped a digit. \nPlease restart the program and type digits.");
+       }
+       //To Evaluate a Boolean, must use String Functions
+       //Code here to be continued
+       if (returnInt != null) return "integer";
+       if (returnFloat != null) return "decimal";
+       if (returnString != null) {
+         Boolean returnBool = Boolean.parseBoolean(string[0]);
+         if (returnBool == true) return "boolean";
+         return "spelling mistake";
+       } else {
+         System.out.println("Program has malfunctioned. Needs review");
+         System.exit(2);
+       }
+
      return ; //Must be a String Variable returning into
    }
 
